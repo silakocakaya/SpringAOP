@@ -23,6 +23,10 @@ public class AccountMainApp {
 		
 		accountDAO.getFirstName();
 		
+		System.out.println("--------------");
+		
+		accountDAO.orderTest();
+		
 		applicationContext.close();
 		
 	}

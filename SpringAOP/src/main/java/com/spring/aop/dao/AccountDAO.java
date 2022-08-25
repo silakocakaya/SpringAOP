@@ -28,4 +28,8 @@ public class AccountDAO {
 		this.firstName = firstName;
 		System.out.println("setFirstName: " + firstName);
 	}
+	
+	public void orderTest() {
+		System.out.println("Order Test");
+	}
 }
