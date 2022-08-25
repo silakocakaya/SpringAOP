@@ -17,7 +17,14 @@ public class AccountMainApp {
 		
 		accountDAO.addAccounts();
 		
+		accountDAO.addSomething();
+		
+		accountDAO.setFirstName("Sila");
+		
+		accountDAO.getFirstName();
+		
 		applicationContext.close();
 		
 	}
 }
+
