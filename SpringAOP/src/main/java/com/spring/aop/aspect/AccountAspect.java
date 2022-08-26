@@ -1,7 +1,5 @@
 package com.spring.aop.aspect;
 
-import java.util.Iterator;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -104,7 +102,9 @@ public class AccountAspect {
 				Account theAccount = (Account) tempArg;
 				
 				System.out.println("account name: " + theAccount.getName());
-				System.out.println("account level: " + theAccount.getLevel());								
+				System.out.println("account level: " + theAccount.getLevel());		
+				
+				theAccount.setLevel("8");
 
 			}
 		}
