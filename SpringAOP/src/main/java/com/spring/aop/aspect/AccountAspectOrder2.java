@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Order(2)
+@Order(8)
 public class AccountAspectOrder2 {
 
 	@Before("execution(public void orderTest*())")

@@ -5,7 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.spring.aop.config.AccountConfig;
 import com.spring.aop.dao.AccountDAO;
 
-public class AccountMainApp {
+public class AccountMainAppJoinPoint {
 
 	public static void main(String[] args) {
 		
@@ -13,23 +13,9 @@ public class AccountMainApp {
 		
 		AccountDAO accountDAO = applicationContext.getBean(AccountDAO.class);
 		
-		accountDAO.addAccount();
-		
-		accountDAO.addAccounts();
-		
-		accountDAO.addSomething();
-		
-		accountDAO.setFirstName("Sila");
-		
-		accountDAO.getFirstName();
-		
-		System.out.println("--------------");
-		
-		accountDAO.orderTest();
-		
-		accountDAO.joinPointTest();
-		
-		AccountDAO.joinPointStatic();
+		Account account = new Account();
+		account.setName("Sila");
+		accountDAO.addJoinPointAccount(account);
 		
 		applicationContext.close();
 		

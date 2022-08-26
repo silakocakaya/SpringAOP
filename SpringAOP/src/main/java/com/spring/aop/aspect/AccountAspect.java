@@ -1,10 +1,17 @@
 package com.spring.aop.aspect;
 
+import java.util.Iterator;
+
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import com.spring.aop.dao.AccountDAO;
+import com.spring.aop.main.Account;
 
 @Aspect
 @Component
@@ -52,6 +59,55 @@ public class AccountAspect {
 	@Before("all() && !setter() && !getter()")
 	public void beforeAllNotSetGet() {
 		System.out.println("-***++ Before beforeAllNotSetGet");
+	}
+	
+	@Before("execution(public * join*())")
+	public void paramsWithJoinPoint(JoinPoint joinPoint) {
+		
+		MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+		
+		System.out.println("methodSig: " + methodSignature);
+		
+		Object[] args = joinPoint.getArgs();
+		
+		for (Object arg : args) {
+			
+			System.out.println(arg);
+			
+			if(arg instanceof AccountDAO) {
+				
+				AccountDAO accountDAO = (AccountDAO) arg;
+				System.out.println(accountDAO.getFirstName());
+			}
+		}
+	}
+	
+	@Before("execution(public * addJoinPointAccount*(..))")
+	public void paramsWithAddJoinPoint(JoinPoint theJoinPoint) {
+		
+		MethodSignature methodSignature = (MethodSignature) theJoinPoint.getSignature();
+		
+		System.out.println("methodSig: " + methodSignature);
+		
+		// display method arguments
+		
+		// get args
+		Object[] args = theJoinPoint.getArgs();
+		
+		// loop thru args
+		for (Object tempArg : args) {
+			System.out.println(tempArg);
+			
+			if (tempArg instanceof Account) {
+				
+				// downcast and print Account specific stuff
+				Account theAccount = (Account) tempArg;
+				
+				System.out.println("account name: " + theAccount.getName());
+				System.out.println("account level: " + theAccount.getLevel());								
+
+			}
+		}
 	}
 	
 }
