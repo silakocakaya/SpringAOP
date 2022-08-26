@@ -13,7 +13,7 @@ import com.spring.aop.main.Account;
 
 @Aspect
 @Component
-public class AccountAspectAfter {
+public class AccountAspectAfterReturning {
 
 		//returning = "result" ve List<Account> result da isimler ayni olmali
 		@AfterReturning(pointcut = "execution(public * findAccounts())",
