@@ -11,13 +11,14 @@ import org.springframework.stereotype.Component;
 @Order(-10)
 public class FortuneAspect {
 
-	@Around("execution(public void getFortune())")
-	public void aroundFortuneService(ProceedingJoinPoint proceedingJoinPoint) {
+	@Around("execution(public * getFortune())")
+	public Object aroundFortuneService(ProceedingJoinPoint proceedingJoinPoint) {
 		
 		long begin = System.currentTimeMillis();
 		
+		Object object = null;
 		try {
-			proceedingJoinPoint.proceed();
+			object = proceedingJoinPoint.proceed();
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -27,6 +28,8 @@ public class FortuneAspect {
 		long duration = (end-begin);
 		
 		System.out.println("Service Time: " + duration / 1000.0 + " ms");
+		
+		return object;
 	}
 	
 }

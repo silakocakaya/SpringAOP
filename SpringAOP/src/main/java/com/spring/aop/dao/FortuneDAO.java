@@ -7,13 +7,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class FortuneDAO {
 
-	public void getFortune() {
+	public String getFortune() {
 		try {
 			TimeUnit.SECONDS.sleep(5);
 			
 			System.out.println("FortuneDAO: Late Day");
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		return "FortuneDAO Return";
 	}
 }

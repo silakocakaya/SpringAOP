@@ -15,8 +15,8 @@ public class FortuneMainApp {
 			FortuneDAO fortuneDAO = applicationContext.getBean(FortuneDAO.class);
 			
 			System.out.println("FortuneMainApp: Before Service Call");
-			fortuneDAO.getFortune();
-			System.out.println("FortuneMainApp: After Service Call");
+			String result = fortuneDAO.getFortune();
+			System.out.println("FortuneMainApp: After Service Call: ->> " + result);
 		} finally {
 			applicationContext.close();
 		}
