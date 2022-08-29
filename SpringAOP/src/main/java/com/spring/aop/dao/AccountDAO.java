@@ -12,6 +12,13 @@ public class AccountDAO {
 	
 	private String firstName;
 	
+	public void exceptionTest(boolean flag) {
+		
+		if(flag) {
+			throw new RuntimeException();
+		}
+	}
+	
 	public List<Account> findAccounts() {
 		
 		List<Account> accountList = new ArrayList<Account>();
