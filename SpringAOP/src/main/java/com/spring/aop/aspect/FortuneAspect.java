@@ -32,4 +32,27 @@ public class FortuneAspect {
 		return object;
 	}
 	
+	@Around("execution(public * getFortune(*))")
+	public Object aroundFortuneServiceWithError(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+		
+		long begin = System.currentTimeMillis();
+		
+		Object object = null;
+		try {
+			object = proceedingJoinPoint.proceed();
+		}  catch (Exception e) {
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+			return e.getMessage();
+		} 
+		
+		long end = System.currentTimeMillis();
+		
+		long duration = (end-begin);
+		
+		System.out.println("Service Time: " + duration / 1000.0 + " ms");
+		
+		return object;
+	}
+	
 }
